@@ -1,43 +1,15 @@
-# Heart Lab AI Website
+# Heart Lab AI
 
-This is the official website for Heart Lab AI, showcasing our services and innovations in healthcare AI.
+Voice AI Platform for Smarter Business Conversations
 
 ## Features
+- Voice AI Integration
+- Go High Level CRM Integration
+- Real-time Analytics
+- Appointment Scheduling
 
-- Modern, responsive design
-- Smooth scrolling navigation
-- Service showcases
-- Contact form
-- Mobile-friendly interface
-
-## Structure
-
-```
-├── index.html          # Main HTML file
-├── styles/
-│   └── main.css       # Main stylesheet
-├── js/
-│   └── main.js        # JavaScript functionality
-└── README.md          # This file
-```
-
-## Setup
-
-1. Clone this repository
-2. Open `index.html` in your web browser
-
-## Development
-
-To modify the website:
-
-1. Edit HTML in `index.html`
-2. Modify styles in `styles/main.css`
-3. Update functionality in `js/main.js`
-
-## Contributing
-
-Feel free to submit issues and enhancement requests.
-
-## License
-
-© 2024 Heart Lab AI. All rights reserved.
+## Setup Instructions
+1. Clone repository
+2. Install dependencies: `npm install`
+3. Set up environment variables
+4. Run development server: `npm run dev`
