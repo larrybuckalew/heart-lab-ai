@@ -1,0 +1,1 @@
+const emailTemplates = { /* Full email templates here */ };
