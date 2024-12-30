@@ -1,62 +1,50 @@
 const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const emailService = require('./email-service');
-const emailTracking = require('./email-tracking');
-
-dotenv.config();
-
 const app = express();
+const cors = require('cors');
+const helmet = require('helmet');
+const { check, validationResult } = require('express-validator');
+const pool = require('./database');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 
-app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..')));
+app.use(cors());
+app.use(helmet());
 
-// Email endpoints
-app.post('/api/send-email', async (req, res) => {
-    try {
-        await emailService.sendFormNotification(req.body);
-        res.json({ success: true });
-    } catch (error) {
-        console.error('Email error:', error);
-        res.status(500).json({ error: 'Failed to send email' });
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send({ message: 'Internal Server Error' });
+});
+
+app.post('/login', 
+  [
+    check('email', 'Email is required').notEmpty(),
+    check('password', 'Password is required').notEmpty()
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
     }
-});
 
-// Email tracking endpoints
-app.get('/api/track/open/:emailId', async (req, res) => {
-    try {
-        await emailTracking.trackOpen(req.params.emailId);
-        // Return a 1x1 transparent pixel
-        res.writeHead(200, {
-            'Content-Type': 'image/gif',
-            'Content-Length': '43'
-        });
-        res.end('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'binary');
-    } catch (error) {
-        console.error('Tracking error:', error);
-        res.status(500).json({ error: 'Failed to track email open' });
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const query = `SELECT * FROM users WHERE email = $1`;
+    const results = await pool.query(query, [email]);
+
+    if (results.rows.length === 0) {
+      return res.status(401).send({ message: 'Invalid email or password' });
     }
-});
 
-app.get('/api/track/click/:emailId/:linkId', async (req, res) => {
-    try {
-        await emailTracking.trackClick(req.params.emailId, req.params.linkId);
-        res.redirect(req.query.url);
-    } catch (error) {
-        console.error('Tracking error:', error);
-        res.status(500).json({ error: 'Failed to track link click' });
+    const isValidPassword = await bcrypt.compare(password, results.rows[0].password);
+
+    if (!isValidPassword) {
+      return res.status(401).send({ message: 'Invalid email or password' });
     }
-});
 
-// Main routes
-app.get(['/', '/services', '/pricing', '/demo', '/about', '/contact'], (req, res) => {
-    const page = req.path === '/' ? 'index' : req.path.substring(1);
-    res.sendFile(path.join(__dirname, '..', `${page}.html`));
-});
+    res.send({ message: 'Logged in successfully' });
+  }
+);
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+app.post('/register',
