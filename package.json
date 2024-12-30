@@ -4,31 +4,35 @@
   "version": "1.0.0",
   "description": "Heart Lab AI Website with GHL Integration",
   "main": "server/server.js",
-  "engines": { "node": "18.x" },
-  "scripts": { 
-    "start": "node server/server.js", 
-    "dev": "nodemon server/server.js", 
-    "test": "jest", 
-    "lint": "eslint ." 
+  "engines": {
+    "node": "18.17.x"
   },
-  "dependencies": { 
-    "aws-sdk": "^2.1450.0", 
-    "cors": "^2.8.5", 
-    "dotenv": "^16.3.1", 
-    "express": "^4.18.2", 
-    "express-rate-limit": "^6.7.0", 
-    "express-validator": "^7.0.0", 
-    "helmet": "^7.0.0", 
-    "nodemailer": "^6.9.4" 
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "jest",
+    "lint": "eslint ."
   },
-  "devDependencies": { 
-    "nodemon": "^3.0.2", 
-    "jest": "^29.0.0", 
-    "eslint": "^8.0.0" 
+  "dependencies": {
+    "aws-sdk": "^2.1450.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "express-validator": "^7.0.0",
+    "helmet": "^7.0.0",
+    "nodemailer": "^6.9.4",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.0.0",
+    "eslint": "^8.0.0"
   },
   "license": "MIT",
-  "repository": { 
-    "type": "git", 
-    "url": "https://github.com/larrybuckalew/heart-lab-ai.git" 
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/larrybuckalew/heart-lab-ai.git"
   }
 }
