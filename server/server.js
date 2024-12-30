@@ -43,10 +43,11 @@ app.post('/login',
       return res.status(401).send({ message: 'Invalid email or password' });
     }
 
-    res.send({ message: 'Logged in successfully' });
-  }
+    res.send({ message: 'Logged in successfully' }); }
 );
-
-app.post('/register',app.post('/forgot-password', 
-  [
-    check('email', 'Email is required').
+}
+app.post('/register',
+app.post('/forgot-password', [
+check('email', 'Email is required').
+(I added the extra } after ); )
+    
