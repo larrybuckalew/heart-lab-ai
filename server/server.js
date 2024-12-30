@@ -47,4 +47,6 @@ app.post('/login',
   }
 );
 
-app.post('/register',
+app.post('/register',app.post('/forgot-password', 
+  [
+    check('email', 'Email is required').
