@@ -1,19 +1,13 @@
-services: 
-- type: web 
-name: heart-lab-ai 
-env: node 
-buildCommand: npm install 
-startCommand: npm start 
-envVars:
-- key: NODE_ENV
-  value: production
-- key: PORT
-  value: 3000
-plan: free 
-healthCheckPath: /health 
-autoDeploy: true 
-nodeVersion: 18.x 
-headers: 
-- path: /* 
-  name: X-Frame-Options 
-  value: DENY
+services:
+  - type: web
+    name: heart-lab-ai
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    nodeVersion: 18.x
