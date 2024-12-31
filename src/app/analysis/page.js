@@ -1,5 +1,5 @@
-import HeartRateChart from '@/components/HeartRateChart';
-import AnalysisMetrics from '@/components/AnalysisMetrics';
+import HeartRateChart from '../../components/HeartRateChart';
+import AnalysisMetrics from '../../components/AnalysisMetrics';
 
 export default function Analysis() {
   return (
