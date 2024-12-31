@@ -1,15 +1,24 @@
-# Heart Lab AI
+# Heart Lab AI Project
 
-Voice AI Platform for Smarter Business Conversations
+## Project Setup and Configuration
 
-## Features
-- Voice AI Integration
-- Go High Level CRM Integration
-- Real-time Analytics
-- Appointment Scheduling
+### Prerequisites
+- Node.js 18.17.0+
+- npm 9.5.0+
 
-## Setup Instructions
-1. Clone repository
+### Installation
+1. Clone the repository
 2. Install dependencies: `npm install`
-3. Set up environment variables
-4. Run development server: `npm run dev`
+3. Run development server: `npm run dev`
+
+### Key Features
+- Next.js 14 with TypeScript
+- TailwindCSS
+- AI Utility Functions
+- Render Deployment Configuration
+
+### Development Scripts
+- `npm run dev`: Start development server
+- `npm run build`: Create production build
+- `npm start`: Start production server
+- `npm test`: Run test suite
