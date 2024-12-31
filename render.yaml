@@ -2,28 +2,28 @@ services:
   - type: web
     name: heart-lab-ai
     env: node
-    region: oregon
     plan: free
-    branch: main
     buildCommand: |
-      npm install --production=false
+      npm ci
       npm run build
-      mkdir .next
-      cp -r .next/* .next/
-    startCommand: |
       pwd
       ls -la
-      ls -la .next || echo "No .next directory"
+      ls -la .next || true
+    startCommand: |
+      ls -la
       npm run start
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
-    healthCheckPath: /
     nodeVersion: 18.17.0
     buildFilter:
       paths:
-      - src/**
-      - package.json
-      - next.config.js
+        - src/**
+        - package.json
+        - package-lock.json
+        - next.config.js
+        - jsconfig.json
+        - postcss.config.js
+        - tailwind.config.js
