@@ -4,26 +4,18 @@ services:
     env: node
     plan: free
     buildCommand: |
-      npm ci
+      npm install
       npm run build
-      pwd
-      ls -la
-      ls -la .next || true
+      ls -la /opt/render/project/src/.next
+      cp -r /opt/render/project/src/.next .
     startCommand: |
       ls -la
-      npm run start
+      ls -la .next
+      pwd
+      node .next/standalone/server.js
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
     nodeVersion: 18.17.0
-    buildFilter:
-      paths:
-        - src/**
-        - package.json
-        - package-lock.json
-        - next.config.js
-        - jsconfig.json
-        - postcss.config.js
-        - tailwind.config.js
