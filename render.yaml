@@ -6,16 +6,15 @@ services:
     buildCommand: |
       npm install
       npm run build
-      ls -la /opt/render/project/src/.next
-      cp -r /opt/render/project/src/.next .
     startCommand: |
       ls -la
-      ls -la .next
-      pwd
-      node .next/standalone/server.js
+      cd /opt/render/project/src
+      ls -la
+      npm run start
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: PORT
         value: 10000
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /
     nodeVersion: 18.17.0
