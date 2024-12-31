@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p ${PORT:-3000}",
+    "start": "node .next/standalone/server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -26,6 +26,6 @@
     "typescript": "^5.1.6"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": "18.17.0"
   }
 }
