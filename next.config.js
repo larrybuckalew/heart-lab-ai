@@ -1,13 +1,20 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/dashboard',
-        permanent: true,
-      },
-    ]
+  output: 'standalone',
+  experimental: {
+    appDir: true,
+    optimizePackageImports: ['@plotly/plotly.js']
+  },
+  images: {
+    domains: ['storage.googleapis.com', 'example.com']
+  },
+  typescript: {
+    ignoreBuildErrors: false
+  },
+  eslint: {
+    ignoreDuringBuilds: false
   }
-}
+};
+
+module.exports = nextConfig;
