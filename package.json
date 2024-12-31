@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp -r .next/* .next/",
-    "start": "next start -p ${PORT:-3000}",
+    "build": "next build && cp -r .next/standalone/* .next/",
+    "start": "node .next/standalone/server.js",
     "lint": "eslint ."
   },
   "dependencies": {
