@@ -2,6 +2,10 @@
   "name": "heart-lab-ai",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,8 +13,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^14.0.4",
+    "@heroicons/react": "^2.2.0",
+    "next": "^15.1.3",
+    "next-auth": "^4.24.11",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^15.1.3"
   }
 }
