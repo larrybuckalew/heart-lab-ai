@@ -2,15 +2,20 @@ services:
   - type: web
     name: heart-lab-ai
     env: node
+    region: singapore
+    plan: free
+    branch: main
     buildCommand: |
-      npm install
+      npm ci
       npm run build
-    startCommand: npm run start
+    startCommand: |
+      ls -la
+      ls -la .next
+      npm run start
     envVars:
-      - key: PORT
-        value: 10000
       - key: NODE_ENV
         value: production
-    autoDeploy: true
+      - key: PORT
+        value: 10000
+    healthCheckPath: /
     nodeVersion: 18.17.0
-    staticPublishPath: ./.next
