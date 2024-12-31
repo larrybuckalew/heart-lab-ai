@@ -2,15 +2,18 @@ services:
   - type: web
     name: heart-lab-ai
     env: node
-    region: singapore
+    region: oregon
     plan: free
     branch: main
     buildCommand: |
-      npm ci
+      npm install --production=false
       npm run build
+      mkdir .next
+      cp -r .next/* .next/
     startCommand: |
+      pwd
       ls -la
-      ls -la .next
+      ls -la .next || echo "No .next directory"
       npm run start
     envVars:
       - key: NODE_ENV
@@ -19,3 +22,8 @@ services:
         value: 10000
     healthCheckPath: /
     nodeVersion: 18.17.0
+    buildFilter:
+      paths:
+      - src/**
+      - package.json
+      - next.config.js
