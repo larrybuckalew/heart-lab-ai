@@ -2,29 +2,10 @@ services:
   - type: web
     name: heart-lab-ai
     env: node
-    plan: free
-    rootDir: .
-    buildCommand: |
-      echo "Starting build process..."
-      npm install
-      echo "Running build..."
-      NEXT_PUBLIC_BASE_URL=$RENDER_EXTERNAL_URL npm run build
-      echo "Build completed"
-      echo "Current directory contents:"
-      ls -la
-      echo ".next directory contents:"
-      ls -la .next || echo "No .next directory"
-    startCommand: |
-      echo "Starting server..."
-      ls -la
-      NEXT_PUBLIC_BASE_URL=$RENDER_EXTERNAL_URL npm run start
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
-      - key: PORT
-        value: 10000
       - key: NODE_ENV
         value: production
-      - key: NEXT_PUBLIC_BASE_URL
-        fromService:
-          name: heart-lab-ai
-          type: web
-          property: host
+      - key: PORT
+        value: 3000
