@@ -11,7 +11,8 @@
     "test:watch": "jest --watch"
   },
   "engines": {
-    "node": ">=18.17.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
   "dependencies": {
     "@auth/nextjs": "^1.0.0",
