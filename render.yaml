@@ -13,5 +13,5 @@ services:
     healthCheckPath: /
     autoDeploy: true
     envSecrets:
-      - NEXT_PUBLIC_SECRET
+      - NEXTAUTH_SECRET
       - DATABASE_URL
