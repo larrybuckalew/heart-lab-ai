@@ -1,24 +1,15 @@
-preDebug: true
 services:
   - type: web
     name: heart-lab-ai
     env: node
     plan: free
     buildCommand: |
-      echo "Current directory: $(pwd)"
-      npm install
-      npm run build
-      echo "Build directory contents:"
+      npm ci
+      NODE_ENV=production npm run build
       ls -la
-      echo ".next directory contents:"
-      ls -la .next || echo "No .next directory"
+      echo "Build completed"
     startCommand: |
-      echo "Current directory: $(pwd)"
-      echo "Directory contents:"
-      ls -la
-      echo ".next directory contents:"
-      ls -la .next || echo "No .next directory"
-      npm run start
+      NODE_ENV=production npm run start
     envVars:
       - key: PORT
         value: 10000
@@ -26,11 +17,5 @@ services:
         value: production
       - key: NEXT_TELEMETRY_DISABLED
         value: "1"
-    buildFilter:
-      paths:
-        - package.json
-        - next.config.js
-        - src/**
+    healthCheckPath: /
     nodeVersion: 18.17.0
-    persistentStorage:
-      mountPath: /opt/render/project/src/.next
