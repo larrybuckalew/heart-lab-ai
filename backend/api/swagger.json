@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Heart Lab AI API",
+    "version": "1.0.0",
+    "description": "API for cardiac risk prediction and patient management"
+  },
+  "host": "api.heartlahai.com",
+  "basePath": "/v1",
+  "schemes": ["https"],
+  "paths": {
+    "/risk-prediction": {
+      "post": {
+        "summary": "Predict cardiac risk",
+        "parameters": [{
+          "in": "body",
+          "name": "patient",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/RiskPredictionInput"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Successful risk prediction",
+            "schema": {
+              "$ref": "#/definitions/RiskPredictionResult"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RiskPredictionInput": {
+      "type": "object",
+      "properties": {
+        "age": {"type": "integer"},
+        "systolicBP": {"type": "number"},
+        "diastolicBP": {"type": "number"},
+        "cholesterol": {"type": "number"},
+        "glucose": {"type": "number"},
+        "smoking": {"type": "boolean"},
+        "diabetes": {"type": "boolean"},
+        "familyHistory": {"type": "boolean"}
+      }
+    },
+    "RiskPredictionResult": {
+      "type": "object",
+      "properties": {
+        "riskCategory": {"type": "string"},
+        "riskProbabilities": {"type": "array", "items": {"type": "number"}}
+      }
+    }
+  }
+}
