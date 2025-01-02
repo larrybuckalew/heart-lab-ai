@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: Heart Lab AI API
+  version: 1.0.0
+  description: API documentation for Heart Lab AI project
+
+servers:
+  - url: http://localhost:3000/api
+    description: Development server
+  - url: https://api.heart-lab-ai.com
+    description: Production server
+
+tags:
+  - name: Health
+    description: Health monitoring endpoints
+  - name: Patients
+    description: Patient management endpoints
+  - name: Analysis
+    description: Heart analysis endpoints
+
+paths:
+  /health:
+    get:
+      summary: Get system health status
+      tags: [Health]
+      responses:
+        '200':
+          description: System health information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, unhealthy]
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  /patients:
+    get:
+      summary: Get all patients
+      tags: [Patients]
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+          description: Page number
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+          description: Items per page
+      responses:
+        '200':
+          description: List of patients
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Patient'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+
+components:
+  schemas:
+    Patient:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        gender:
+          type: string
+          enum: [male, female, other]
+        medicalHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicalRecord'
+
+    MedicalRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        date:
+          type: string
+          format: date-time
+        type:
+          type: string
+        notes:
+          type: string
+
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+        pages:
+          type: integer
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - BearerAuth: []
