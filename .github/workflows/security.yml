@@ -1,0 +1,110 @@
+name: Security Scans
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install security tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nmap sslscan
+          docker pull owasp/zap2docker-stable
+
+      - name: Run npm audit
+        run: npm audit
+
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'heart-lab-ai'
+          path: '.'
+          format: 'HTML'
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+
+      - name: Run Snyk Security scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: Start application for testing
+        run: |
+          npm run build
+          npm start & sleep 10
+
+      - name: Run ZAP Scan
+        run: |
+          docker run -t owasp/zap2docker-stable zap-baseline.py \
+            -t http://localhost:3000 \
+            -r zap-report.html
+
+      - name: Run custom security tests
+        run: npm run test:security
+
+      - name: Run SSL Labs scan
+        if: github.event_name != 'pull_request'
+        run: |
+          curl -s https://raw.githubusercontent.com/ssllabs/ssllabs-scan/stable/ssllabs-scan-v3.go | \
+          go run - -grade -quiet ${{ secrets.PROD_DOMAIN }}
+
+      - name: Upload security reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-reports
+          path: |
+            dependency-check-report.html
+            zap-report.html
+            snyk-report.json
+            security-test-results.json
+
+      - name: Check for critical vulnerabilities
+        run: |
+          if grep -q '"severity": "critical"' security-test-results.json; then
+            echo "Critical vulnerabilities found!"
+            exit 1
+          fi
+
+      - name: Create Security Issue
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Security Vulnerabilities Detected',
+              body: `Security scan detected vulnerabilities.
+                     Please check the security reports in the artifacts of run ${context.runId}.
+                     [View run](${context.runUrl})`
+            });
+
+      - name: Notify Security Team
+        if: failure()
+        uses: actions/slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_SECURITY_WEBHOOK }}
+          SLACK_MESSAGE: 'Security vulnerabilities detected in the latest scan!'
+          SLACK_COLOR: 'danger'
+          SLACK_FOOTER: 'Security Scanner'
