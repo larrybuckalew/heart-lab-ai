@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: redis-backup
+  namespace: production
+spec:
+  schedule: "0 1 * * *"  # Run daily at 1 AM
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: redis-backup
+            image: redis:alpine
+            command:
+            - /bin/sh
+            - -c
+            - |
+              redis-cli -h redis save && \
+              cp /data/dump.rdb /backup/dump.rdb-$(date +%Y%m%d-%H%M%S)
+            volumeMounts:
+            - name: redis-data
+              mountPath: /data
+            - name: backup-storage
+              mountPath: /backup
+          volumes:
+          - name: redis-data
+            persistentVolumeClaim:
+              claimName: redis-data-redis-0
+          - name: backup-storage
+            persistentVolumeClaim:
+              claimName: backup-storage
+          restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-storage
+  namespace: production
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi

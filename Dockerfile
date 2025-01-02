@@ -1,41 +1,34 @@
-# Use official Node.js LTS image
-FROM node:18-alpine AS base
-
-# Install dependencies
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-
-# Copy package files
-COPY package.json package-lock.json* ./
-RUN npm ci
-
 # Build stage
-FROM base AS builder
+FROM node:20-alpine AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY package*.json ./
+RUN npm ci
 COPY . .
-
 RUN npm run build
 
 # Production stage
-FROM base AS runner
+FROM node:20-alpine
 WORKDIR /app
-
-ENV NODE_ENV production
-
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Copy built artifacts
+COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
 
-# Set user and expose port
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+  CMD node healthcheck.js
+
+# Set Node.js to run in production mode
+ENV NODE_ENV=production
+
+# Add non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
 USER nextjs
-EXPOSE 3000
 
-# Start the application
-CMD ["node", "server.js"]
+# Set proper permissions
+RUN chown -R nextjs:nodejs /app
+
+EXPOSE 3000
+CMD ["npm", "start"]
