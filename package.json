@@ -2,31 +2,22 @@
   "name": "heart-lab-ai",
   "version": "1.0.0",
   "description": "A machine learning project focused on cardiac analysis and research",
-  "main": "src/pages/index.tsx",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "jest --coverage"
+    "lint": "next lint"
   },
-  "keywords": ["machine-learning", "cardiac-analysis", "ai"],
-  "author": "Larry Buckalew",
-  "license": "MIT",
   "dependencies": {
     "next": "^14.0.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.3.2"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.39",
+    "typescript": "^5.3.2",
     "eslint": "^8.54.0",
-    "eslint-config-next": "^14.0.3",
-    "jest": "^29.7.0",
-    "tailwindcss": "^3.3.5",
-    "postcss": "^8.4.31",
-    "autoprefixer": "^10.4.16"
+    "eslint-config-next": "^14.0.3"
   }
 }

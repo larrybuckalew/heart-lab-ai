@@ -12,4 +12,3 @@ A machine learning project focused on cardiac analysis and research.
 - Next.js
 - React
 - TypeScript
-- Tailwind CSS
