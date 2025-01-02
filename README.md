@@ -1,16 +1,15 @@
-# Heart Lab AI - Business Automation Enhancements
+# Heart Lab AI
 
-## New Features
-- Analytics and Reporting Services
-- Business Integration Services
-- Workflow Templates
-- AI Task Scheduler
-- Enhanced UI Components
+## Project Overview
+A machine learning project focused on cardiac analysis and research.
 
 ## Setup
-1. Install dependencies
-2. Configure integrations
-3. Run initial setup
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
 
-## Usage
-Detailed documentation coming soon.
+## Technologies
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
