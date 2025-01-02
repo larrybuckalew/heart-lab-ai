@@ -1,24 +1,16 @@
-# Heart Lab AI Project
+# Heart Lab AI - Business Automation Enhancements
 
-## Project Setup and Configuration
+## New Features
+- Analytics and Reporting Services
+- Business Integration Services
+- Workflow Templates
+- AI Task Scheduler
+- Enhanced UI Components
 
-### Prerequisites
-- Node.js 18.17.0+
-- npm 9.5.0+
+## Setup
+1. Install dependencies
+2. Configure integrations
+3. Run initial setup
 
-### Installation
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run development server: `npm run dev`
-
-### Key Features
-- Next.js 14 with TypeScript
-- TailwindCSS
-- AI Utility Functions
-- Render Deployment Configuration
-
-### Development Scripts
-- `npm run dev`: Start development server
-- `npm run build`: Create production build
-- `npm start`: Start production server
-- `npm test`: Run test suite
+## Usage
+Detailed documentation coming soon.
