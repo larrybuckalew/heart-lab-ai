@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env.production
+    depends_on:
+      - database
+
+  database:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=heartlabai
+      - POSTGRES_USER=heartlabai
+      - POSTGRES_PASSWORD=your_secure_password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  # Optional: Add Redis for caching
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis-data:/data
+
+volumes:
+  postgres-data:
+  redis-data:
