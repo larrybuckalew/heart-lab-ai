@@ -1,0 +1,1 @@
+const nodemailer = require('nodemailer'); /* Full email service here */;

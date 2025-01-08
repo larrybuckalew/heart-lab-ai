@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: heart-lab-ai
+    env: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.0.0
+      - key: NODE_ENV
+        value: production
+      - key: NPM_VERSION
+        value: 10.0.0
+    healthCheckPath: /
+    autoDeploy: true

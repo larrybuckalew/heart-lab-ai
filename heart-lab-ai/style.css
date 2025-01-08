@@ -1,0 +1,7 @@
+/* Base styles */
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #4f46e5;
+    --accent-color: #818cf8;
+    /* Rest of CSS content */
+}
