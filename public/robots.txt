@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://heartlab.ai/sitemap.xml
+
+# Prevent access to admin areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Allow key content areas
+Allow: /about
+Allow: /services
+Allow: /careers
+Allow: /testimonials
+Allow: /contact
