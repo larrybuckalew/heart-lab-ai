@@ -1,8 +1,23 @@
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
-    unoptimized: true
+    domains: ['placeholder.com']
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY'
+          }
+        ]
+      }
+    ]
   }
-};
+}
 
-export default nextConfig;
+export default nextConfig
