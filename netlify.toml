@@ -1,6 +1,17 @@
 [build]
   command = "npm run build"
   publish = ".next"
+  
+[build.environment]
+  NODE_VERSION = "18"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
