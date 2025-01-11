@@ -23,11 +23,10 @@ const nextConfig = {
     return config;
   },
 
-  // Experimental configurations
+  // Experimental configurations (updated)
   experimental: {
-    // Attempt to resolve build caching issues
-    optimizePackageImports: true,
-    serverComponentsExternalPackages: ['tailwindcss']
+    // Removed optimizePackageImports (was causing error)
+    serverExternalPackages: ['tailwindcss', 'postcss']
   },
 
   // Logging configuration
