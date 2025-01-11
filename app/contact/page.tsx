@@ -32,10 +32,20 @@ export default function Contact() {
             firstName: formData.name.split(' ')[0],
             lastName: formData.name.split(' ').slice(1).join(' '),
             phone: formData.phone,
+            tags: ['Website Lead', 'Contact Form', 'AI Inquiry'],
+            source: 'Website Contact Form',
             customFields: [
               {
                 id: 'message',
                 value: formData.message
+              },
+              {
+                id: 'lead_source',
+                value: 'Website Contact Form'
+              },
+              {
+                id: 'lead_type',
+                value: 'AI Services Inquiry'
               }
             ]
           }
@@ -45,6 +55,9 @@ export default function Contact() {
       if (!response.ok) {
         throw new Error('Failed to submit form');
       }
+
+      // Add contact to a campaign or pipeline if needed
+      // Can add additional API calls here
 
       setSubmitStatus('success');
       setFormData({
