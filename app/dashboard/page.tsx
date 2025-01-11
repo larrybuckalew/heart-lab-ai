@@ -1,13 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'Dashboard | Heart Lab AI',
-  description: 'Your AI-powered business insights and recommendations dashboard',
-};
 
 interface BusinessInsight {
   title: string;
