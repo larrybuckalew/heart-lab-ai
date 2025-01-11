@@ -10,6 +10,7 @@
   NPM_FLAGS = "--legacy-peer-deps"
   NODE_OPTIONS = "--max_old_space_size=4096"
   NEXT_TELEMETRY_DISABLED = "1"
+  NODE_ENV = "production"
 
 [context.production]
   command = "npm run build"
