@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Heart Lab AI',
-  description: 'Advanced cardiac analysis and research platform',
+  title: 'HeartLab AI - Intelligent Innovation',
+  description: 'Empowering small businesses with AI solutions and expert guidance',
 }
 
 export default function RootLayout({
