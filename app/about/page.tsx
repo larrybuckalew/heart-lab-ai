@@ -4,7 +4,7 @@ export default function About() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">About HeartLab AI</h1>
         <p className="text-lg text-gray-600 mb-6">
-          HeartLab AI is at the forefront of AI innovation, specializing in advanced ECG analysis and comprehensive AI solutions for businesses of all sizes.
+          HeartLab AI is at the forefront of AI innovation, providing comprehensive AI solutions for businesses of all sizes.
         </p>
         <div className="grid gap-8 mt-12">
           <section>
