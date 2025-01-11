@@ -1,6 +1,6 @@
 [build]
-  command = "npm run build"
-  publish = "out"
+  command = "npm run build && npm run export"
+  publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -8,6 +8,12 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
+  NEXT_TELEMETRY_DISABLED = "1"
 
 [context.production]
-  command = "npm run build"
+  command = "npm run build && npm run export"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
