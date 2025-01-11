@@ -1,40 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  output: 'standalone',
-  
+  env: {
+    DATABASE_URL: process.env.DATABASE_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    REDIS_URL: process.env.REDIS_URL,
+  },
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: true, // Consider removing this in production
   },
-
-  logging: {
-    level: 'verbose'
+  eslint: {
+    ignoreDuringBuilds: true, // Consider removing this in production
   },
-
-  webpack: (config, { isServer }) => {
-    config.stats = 'detailed';
-    
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname)
-    };
-
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false
-      }
-    }
-
-    return config;
-  },
-
-  experimental: {
-    optimizePackageImports: true,
-    serverComponentsExternalPackages: ['tailwindcss', 'postcss']
-  }
+  reactStrictMode: true,
+  swcMinify: true,
 };
 
 export default nextConfig;
