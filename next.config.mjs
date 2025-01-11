@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
+  output: 'standalone',
   
   // Configure build caching
   experimental: {
@@ -13,6 +13,18 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true
+  },
+
+  // Webpack configuration
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+        net: false,
+        tls: false
+      }
+    }
+    return config
   }
 };
 
