@@ -8,8 +8,6 @@
 [build.environment]
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
-  NODE_OPTIONS = "--max_old_space_size=4096"
-  NEXT_TELEMETRY_DISABLED = "1"
   NODE_ENV = "production"
 
 [context.production]
@@ -19,6 +17,3 @@
   for = "/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"

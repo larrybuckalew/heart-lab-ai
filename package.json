@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && echo 'Build completed successfully'",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prebuild": "echo 'Preparing to build...' && node --version && npm --version && pwd && ls -la"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "15.1.4",
