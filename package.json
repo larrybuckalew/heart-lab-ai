@@ -6,14 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prebuild": "echo 'Starting build process...' && node --version && npm --version"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "15.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@netlify/plugin-nextjs": "^5.9.3"
+    "@netlify/plugin-nextjs": "^5.9.3",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.33",
+    "autoprefixer": "^10.4.16"
   },
   "devDependencies": {
     "@types/node": "^20",
