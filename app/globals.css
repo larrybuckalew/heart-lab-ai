@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: Add some custom base styles */
-body {
-  @apply text-gray-900 bg-white;
-}
-
-/* Optional: Add some custom component styles */
-.btn-primary {
-  @apply bg-primary-500 text-white hover:bg-primary-600 transition-colors;
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-600 transition-colors;
+  }
 }
