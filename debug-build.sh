@@ -1,41 +1,40 @@
 #!/bin/bash
 
-echo "Debug Build Script"
-echo "----------------"
+# Debugging script for Netlify build
 
-# System Information
-echo "System Information:"
+set -e
+
+echo "===== System Information ====="
 echo "Node Version: $(node --version)"
 echo "NPM Version: $(npm --version)"
 echo "Current Directory: $(pwd)"
+echo "Directory Contents:"
+ls -la
 
-# Check Node and NPM versions
-if [ "$(printf '%s\n' "18.0.0" "$NODE_VERSION" | sort -V | head -n1)" = "18.0.0" ]; then
-    echo "Node version requirement met"
-else
-    echo "Node version is below 18.0.0"
-    exit 1
-fi
+echo -e "\n===== Checking Project Files ====="
+REQUIRED_FILES=(
+  "package.json"
+  "next.config.js"
+  "app/layout.tsx"
+  "app/page.tsx"
+)
 
-# Verify package.json
-echo -e "\nVerifying package.json:"
-npm pkg get name version
+for file in "${REQUIRED_FILES[@]}"; do
+  if [ -f "$file" ]; then
+    echo "$file: Found ✓"
+    echo "File contents:"
+    cat "$file"
+    echo "---"
+  else
+    echo "$file: NOT FOUND ✗"
+  fi
+done
 
-# Install dependencies with verbose output
-echo -e "\nInstalling Dependencies:"
+echo -e "\n===== Installing Dependencies ====="
 npm ci --verbose
 
-# Build with detailed logging
-echo -e "\nBuilding Project:"
-npm run build --verbose
+echo -e "\n===== Building Project ====="
+npm run build
 
-# Capture build exit status
-BUILD_EXIT_CODE=$?
-
-if [ $BUILD_EXIT_CODE -ne 0 ]; then
-    echo -e "\nBuild Failed with Exit Code: $BUILD_EXIT_CODE"
-    exit $BUILD_EXIT_CODE
-fi
-
-echo -e "\nBuild Completed Successfully"
+echo -e "\n===== Build Completed Successfully ====="
 exit 0

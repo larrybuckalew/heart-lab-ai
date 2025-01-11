@@ -1,16 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   output: 'standalone',
   reactStrictMode: true,
   
-  // Disable type checking during build
-  typescript: {
-    ignoreBuildErrors: true
-  },
-
   // Webpack configuration
   webpack: (config, { isServer }) => {
-    // Add fallback for client-side modules
+    // Basic fallback configuration
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -19,9 +14,6 @@ const nextConfig = {
         tls: false
       }
     }
-
     return config;
   }
 };
-
-module.exports = nextConfig;
