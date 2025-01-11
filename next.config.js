@@ -21,17 +21,6 @@ const nextConfig = {
     }
 
     return config;
-  },
-
-  // Experimental configurations (updated)
-  experimental: {
-    // Removed optimizePackageImports (was causing error)
-    serverExternalPackages: ['tailwindcss', 'postcss']
-  },
-
-  // Logging configuration
-  logging: {
-    level: 'verbose'
   }
 };
 
