@@ -3,11 +3,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export const metadata = {
-  title: 'Login | Heart Lab AI',
-  description: 'Secure login for Heart Lab AI dashboard',
-};
-
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
