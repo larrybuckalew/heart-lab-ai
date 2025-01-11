@@ -5,7 +5,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 text-center">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">Advanced ECG Analysis</h1>
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">AI Solutions for Business</h1>
         <p className="text-xl text-gray-600 mb-8">Empowering businesses with intelligent AI solutions</p>
         <Link href="/contact" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">
           Get Started
