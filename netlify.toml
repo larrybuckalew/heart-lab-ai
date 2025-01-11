@@ -1,11 +1,14 @@
 [build]
-  command = "npm ci && npm run build"
+  command = "npm install && npm run build"
   publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "18"
+  NODE_OPTIONS = "--max_old_space_size=4096"
   NPM_FLAGS = "--legacy-peer-deps"
-  NEXT_PRIVATE_TARGET = "server"
+
+[context.production]
+  command = "npm run build"
