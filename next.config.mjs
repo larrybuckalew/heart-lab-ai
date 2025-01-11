@@ -1,22 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   output: 'standalone',
   
-  // Configure build caching
-  experimental: {
-    isrMemoryCacheSize: 0, // Disable ISR memory cache
-  },
-
-  // Optional: Configure trailing slashes and image optimization
-  trailingSlash: true,
-  images: {
-    unoptimized: true
+  // Logging for debugging
+  logging: {
+    level: 'verbose'
   },
 
   // Webpack configuration
   webpack: (config, { isServer }) => {
+    config.infrastructureLogging = {
+      level: 'verbose'
+    };
+
     if (!isServer) {
       config.resolve.fallback = {
         fs: false,

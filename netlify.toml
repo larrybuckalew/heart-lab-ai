@@ -7,8 +7,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  NODE_OPTIONS = "--max_old_space_size=4096"
   NPM_FLAGS = "--legacy-peer-deps"
+  NODE_OPTIONS = "--max_old_space_size=4096"
   NEXT_TELEMETRY_DISABLED = "1"
 
 [context.production]
