@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Uncomment the following line if you want to use static export
-  // output: 'export',
+  output: 'standalone',
   reactStrictMode: true,
   swcMinify: true,
   
