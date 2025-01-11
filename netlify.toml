@@ -1,5 +1,5 @@
 [build]
-  command = "chmod +x debug-build.sh && ./debug-build.sh"
+  command = "npm run build"
   publish = ".next"
 
 [[plugins]]
@@ -12,9 +12,4 @@
   NEXT_TELEMETRY_DISABLED = "1"
 
 [context.production]
-  command = "chmod +x debug-build.sh && ./debug-build.sh"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+  command = "npm run build"
