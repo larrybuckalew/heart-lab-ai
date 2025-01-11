@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'HeartLab AI - Intelligent Innovation',
-  description: 'Empowering small businesses with AI solutions and expert guidance',
+  title: 'HeartLab AI',
+  description: 'Intelligent Innovation for Every Business'
 }
 
 export default function RootLayout({

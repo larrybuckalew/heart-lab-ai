@@ -9,6 +9,7 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
   NODE_ENV = "production"
+  NEXT_TELEMETRY_DISABLED = "1"
 
 [context.production]
   command = "npm run build"
