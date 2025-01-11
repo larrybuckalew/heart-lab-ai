@@ -1,10 +1,12 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from 'next';
+import './globals.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export const metadata: Metadata = {
-  title: 'HeartLab AI',
-  description: 'Intelligent Innovation for Every Business'
-}
+  title: 'HeartLab AI - Advanced ECG Analysis',
+  description: 'AI solutions for businesses, specializing in AI consulting and custom development',
+};
 
 export default function RootLayout({
   children,
@@ -13,7 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <Navbar />
+        <div className="flex-grow">
+          {children}
+        </div>
+        <Footer />
+      </body>
     </html>
-  )
+  );
 }
