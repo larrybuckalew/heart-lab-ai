@@ -2,16 +2,17 @@
 module.exports = {
   output: 'standalone',
   reactStrictMode: true,
-  
-  // Webpack configuration
+  swcMinify: true,
+  images: {
+    unoptimized: true,
+  },
   webpack: (config, { isServer }) => {
-    // Basic fallback configuration
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
         net: false,
-        tls: false
+        tls: false,
       }
     }
     return config;

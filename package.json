@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && echo 'Build completed successfully' && pwd && ls -la .next",
+    "build": "next build",
+    "postinstall": "next build",
     "start": "next start",
     "lint": "next lint"
   },
