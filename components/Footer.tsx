@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-lg font-semibold mb-4">HeartLab AI</h3>
-            <p className="text-gray-400">Advanced ECG Analysis</p>
+            <p className="text-gray-400">AI Solutions for Business</p>
           </div>
           
           <div>
