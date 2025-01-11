@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export const metadata: Metadata = {
-  title: 'HeartLab AI - Advanced ECG Analysis',
+  title: 'HeartLab AI',
   description: 'AI solutions for businesses, specializing in AI consulting and custom development',
 };
 
