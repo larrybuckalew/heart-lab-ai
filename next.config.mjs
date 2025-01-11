@@ -4,16 +4,21 @@ const nextConfig = {
   output: 'standalone',
   
   typescript: {
-    // Disable type checking during build to see if it's causing issues
     ignoreBuildErrors: true
   },
 
-  // Webpack configuration
+  logging: {
+    level: 'verbose'
+  },
+
   webpack: (config, { isServer }) => {
-    // Add more verbose logging
     config.stats = 'detailed';
     
-    // Fallback configurations
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname)
+    };
+
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -26,11 +31,9 @@ const nextConfig = {
     return config;
   },
 
-  // Experimental configurations
   experimental: {
-    // Attempt to resolve build caching issues
     optimizePackageImports: true,
-    serverComponentsExternalPackages: ['tailwindcss']
+    serverComponentsExternalPackages: ['tailwindcss', 'postcss']
   }
 };
 

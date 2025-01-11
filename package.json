@@ -7,7 +7,7 @@
     "build": "next build && echo 'Build completed successfully'",
     "start": "next start",
     "lint": "next lint",
-    "prebuild": "echo 'Preparing to build...' && node --version && npm --version"
+    "prebuild": "echo 'Preparing to build...' && node --version && npm --version && pwd && ls -la"
   },
   "dependencies": {
     "next": "15.1.4",
