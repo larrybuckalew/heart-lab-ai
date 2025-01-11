@@ -10,6 +10,14 @@
   NPM_FLAGS = "--legacy-peer-deps"
   NODE_ENV = "production"
   NEXT_TELEMETRY_DISABLED = "1"
+  DEBUG = "next:*"
 
 [context.production]
   command = "npm run build"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
