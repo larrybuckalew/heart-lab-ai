@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'next/font/google'
-import { GeistMono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import "./globals.css";
 
-const geistSans = GeistSans({ subsets: ['latin'] });
-const geistMono = GeistMono({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "HeartLab AI",
@@ -17,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.className} ${geistMono.variable}`}>
+    <html lang="en" className={inter.className}>
       <body>{children}</body>
     </html>
   );
