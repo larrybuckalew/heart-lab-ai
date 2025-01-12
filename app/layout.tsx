@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Geist } from 'next/font/google'
-import { Geist_Mono } from 'next/font/google'
+import { GeistSans } from 'next/font/google'
+import { GeistMono } from 'next/font/google'
 import "./globals.css";
 
-const geistSans = Geist({ subsets: ['latin'] });
-const geistMono = Geist_Mono({ subsets: ['latin'] });
+const geistSans = GeistSans({ subsets: ['latin'] });
+const geistMono = GeistMono({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: "HeartLab AI",
