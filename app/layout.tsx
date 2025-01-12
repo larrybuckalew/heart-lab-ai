@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'next/font/google'
-import { GeistMono } from 'next/font/google'
+import { Inter } from 'next/font/google'
+import { Roboto_Mono } from 'next/font/google'
 import "./globals.css";
 
-const geistSans = GeistSans({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap'
 });
 
-const geistMono = GeistMono({
+const robotoMono = Roboto_Mono({
   subsets: ['latin'],
   display: 'swap'
 });
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.className} ${geistMono.variable}`}>
+    <html lang="en" className={`${inter.className} ${robotoMono.variable}`}>
       <body>{children}</body>
     </html>
   );
