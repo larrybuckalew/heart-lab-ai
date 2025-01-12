@@ -10,7 +10,8 @@ const inter = Inter({
 
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
-  display: 'swap'
+  display: 'swap',
+  variable: '--font-roboto-mono'
 });
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.className} ${robotoMono.variable}`}>
+    <html lang="en" className={`${inter.className} ${robotoMono.className}`}>
       <body>{children}</body>
     </html>
   );
