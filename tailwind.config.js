@@ -12,10 +12,10 @@ module.exports = {
         'heartlab-secondary': '#10B981',
         'heartlab-accent': '#6366F1'
       }
-    },
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography')
-  ],
+  ]
 }
