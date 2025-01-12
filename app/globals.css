@@ -7,15 +7,11 @@ body {
   @apply text-gray-900 bg-gray-50;
 }
 
-/* HeartLab AI Custom Styles */
+/* HeartLab AI Utility Classes */
 .heartlab-container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .heartlab-btn-primary {
   @apply bg-heartlab-primary text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-}
-
-.heartlab-card {
-  @apply bg-white shadow-md rounded-lg p-6 border border-gray-200;
 }
