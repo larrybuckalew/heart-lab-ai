@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  output: 'standalone',
+const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimized: true
-  }
-};
+    domains: ['heartlabai.com', 'localhost'],
+  },
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false, net: false, tls: false };
+    return config;
+  },
+}
+
+module.exports = nextConfig
