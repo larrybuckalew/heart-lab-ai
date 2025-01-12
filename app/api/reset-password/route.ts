@@ -1,35 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
-    const { token, newPassword } = await request.json();
+    const { email, newPassword } = await request.json();
 
     // Validate input
-    if (!token || !newPassword) {
+    if (!email || !newPassword) {
       return NextResponse.json(
-        { message: 'Token and new password are required' }, 
-        { status: 400 }
-      );
-    }
-
-    // Find user with matching reset token
-    const user = await prisma.user.findFirst({
-      where: {
-        resetToken: token,
-        resetTokenExpiry: {
-          gt: new Date() // Token must not be expired
-        }
-      }
-    });
-
-    // Check if user exists and token is valid
-    if (!user) {
-      return NextResponse.json(
-        { message: 'Invalid or expired reset token' }, 
+        { error: 'Email and new password are required' }, 
         { status: 400 }
       );
     }
@@ -37,14 +19,10 @@ export async function POST(request: NextRequest) {
     // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update user's password and clear reset token
-    await prisma.user.update({
-      where: { id: user.id },
-      data: {
-        password: hashedPassword,
-        resetToken: null,
-        resetTokenExpiry: null
-      }
+    // Update user's password
+    const updatedUser = await prisma.user.update({
+      where: { email },
+      data: { password: hashedPassword }
     });
 
     return NextResponse.json(
@@ -54,7 +32,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Password reset error:', error);
     return NextResponse.json(
-      { message: 'An unexpected error occurred' }, 
+      { error: 'Password reset failed' }, 
       { status: 500 }
     );
   }
