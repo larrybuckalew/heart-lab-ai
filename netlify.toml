@@ -1,5 +1,5 @@
 [build]
-  command = "rm -rf pages && next build"
+  command = "find . -name 'index.tsx' -not -path './app/*' -delete && npm install && npm run build"
   publish = ".next"
 
 [[plugins]]
