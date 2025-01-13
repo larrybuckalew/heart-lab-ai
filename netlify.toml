@@ -1,10 +1,6 @@
 [build]
-  command = "rm -rf ./* && git clone https://github.com/larrybuckalew/heart-lab-ai.git . && npm install && npm run build"
+  command = "rm -rf pages && next build"
   publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-[build.environment]
-  NEXT_PUBLIC_API_URL = "/.netlify/functions/api"
-  NODE_ENV = "production"
