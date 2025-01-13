@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prepare": "husky install",
-    "postinstall": "npx prisma generate"
+    "lint": "next lint"
   },
   "dependencies": {
     "@prisma/client": "^5.8.0",
