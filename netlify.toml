@@ -1,20 +1,10 @@
+# Netlify configuration
 [build]
-  command = "npm ci && npm run build"
+  command = "npm run build"
   publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NEXT_TELEMETRY_DISABLED = "1"
-  NODE_VERSION = "18"
-  NPM_FLAGS = "--legacy-peer-deps"
-  NODE_ENV = "production"
-  NEXT_USE_NETLIFY_EDGE = "true"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
+  NEXT_PUBLIC_API_URL = "/.netlify/functions/api"
