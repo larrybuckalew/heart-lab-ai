@@ -8,31 +8,31 @@ export async function POST(request: Request) {
   try {
     const { email, newPassword } = await request.json();
 
-    // Validate input
-    if (!email || !newPassword) {
+    const user = await prisma.user.findUnique({
+      where: { email }
+    });
+
+    if (!user) {
       return NextResponse.json(
-        { error: 'Email and new password are required' }, 
-        { status: 400 }
+        { error: 'User not found' },
+        { status: 404 }
       );
     }
 
-    // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update user's password
     const updatedUser = await prisma.user.update({
       where: { email },
       data: { password: hashedPassword }
     });
 
     return NextResponse.json(
-      { message: 'Password reset successful' }, 
+      { message: 'Password reset successfully' },
       { status: 200 }
     );
   } catch (error) {
-    console.error('Password reset error:', error);
     return NextResponse.json(
-      { error: 'Password reset failed' }, 
+      { error: 'An error occurred' },
       { status: 500 }
     );
   }
