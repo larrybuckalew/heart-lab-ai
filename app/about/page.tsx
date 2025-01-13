@@ -1,35 +1,45 @@
-export default function About() {
+export default function AboutPage() {
+  const teamMembers = [
+    {
+      name: 'Larry Buckalew',
+      role: 'Founder & CEO',
+      description: 'AI innovation expert with a passion for small business transformation'
+    },
+    {
+      name: 'Technical Lead',
+      role: 'Chief Technology Officer',
+      description: 'Driving cutting-edge AI solutions and technical strategy'
+    }
+  ]
+
   return (
-    <main className="min-h-screen bg-white py-16 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">About HeartLab AI</h1>
-        <p className="text-lg text-gray-600 mb-6">
-          HeartLab AI is at the forefront of AI innovation, providing comprehensive AI solutions for businesses of all sizes.
-        </p>
-        <div className="grid gap-8 mt-12">
-          <section>
-            <h2 className="text-2xl font-semibold mb-4">Our Mission</h2>
-            <p className="text-gray-600">
-              To empower businesses with intelligent AI solutions that drive growth and innovation.
-            </p>
-          </section>
-          <section>
-            <h2 className="text-2xl font-semibold mb-4">Our Vision</h2>
-            <p className="text-gray-600">
-              To be the leading provider of accessible, practical AI solutions for businesses across all sectors.
-            </p>
-          </section>
-          <section>
-            <h2 className="text-2xl font-semibold mb-4">Our Values</h2>
-            <ul className="list-disc pl-6 text-gray-600">
-              <li className="mb-2">Innovation in everything we do</li>
-              <li className="mb-2">Customer success as our priority</li>
-              <li className="mb-2">Ethical AI development and implementation</li>
-              <li>Continuous learning and improvement</li>
-            </ul>
-          </section>
-        </div>
+    <div className="min-h-screen bg-gray-50 py-16">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-12">About Heart Lab AI</h1>
+        
+        <section className="bg-white shadow-lg rounded-xl p-8 mb-12">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Heart Lab AI empowers small businesses to leverage artificial intelligence, 
+            transforming complex technologies into simple, actionable solutions that drive growth 
+            and efficiency.
+          </p>
+        </section>
+
+        <section className="bg-white shadow-lg rounded-xl p-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-6">Our Team</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-gray-200 rounded-full w-32 h-32 mx-auto mb-4"></div>
+                <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
+                <p className="text-gray-600">{member.role}</p>
+                <p className="text-gray-500 mt-2">{member.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
-    </main>
-  );
+    </div>
+  )
 }
