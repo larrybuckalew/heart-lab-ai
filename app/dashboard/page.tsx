@@ -1,7 +1,10 @@
 import React from 'react'
-import SalesKPI from './components/SalesKPI'
-import AIAnalytics from './components/AIAnalytics'
-import Visualizations from './components/Visualizations'
+import dynamic from 'next/dynamic'
+
+// Dynamically import components to handle SSR
+const SalesKPI = dynamic(() => import('./components/SalesKPI'), { ssr: false })
+const AIAnalytics = dynamic(() => import('./components/AIAnalytics'), { ssr: false })
+const Visualizations = dynamic(() => import('./components/Visualizations'), { ssr: false })
 
 export default function Dashboard() {
   return (
