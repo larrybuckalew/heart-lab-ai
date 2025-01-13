@@ -12,6 +12,7 @@ export default function Navigation() {
           <Link href="/pricing" className="text-gray-700 hover:text-blue-600">Pricing</Link>
           <Link href="/contact" className="text-gray-700 hover:text-blue-600">Contact</Link>
           <Link href="/docs" className="text-gray-700 hover:text-blue-600">Docs</Link>
+          <Link href="/blog" className="text-gray-700 hover:text-blue-600">Blog</Link>
           <Link href="/login" className="text-white bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700">Login</Link>
         </div>
       </div>
