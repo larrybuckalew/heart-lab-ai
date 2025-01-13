@@ -1,1 +1,0 @@
-// Moving content to app/page.tsx - removing this file to resolve conflict
