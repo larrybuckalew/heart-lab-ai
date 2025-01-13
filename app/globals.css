@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply text-gray-900 bg-gray-50;
+@layer base {
+  :root {
+    --primary: #2563eb;
+  }
 }
 
-.heartlab-container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-.heartlab-btn-primary {
-  @apply bg-heartlab-primary text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+@layer components {
+  .heartlab-btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
 }

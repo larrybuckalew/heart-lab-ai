@@ -5,7 +5,13 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'heartlab': {
+          primary: '#2563eb',
+        },
+      },
+    },
   },
   plugins: [],
 }
